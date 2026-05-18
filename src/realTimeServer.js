@@ -12,23 +12,12 @@ module.exports = (httpServer) => {
     );
     const user = cookies.username || "anonymous";
 
-    socket.on("message", (message) => {
-      io.emit("message", {
+    socket.on("alert", (data) => {
+      io.emit("alert", {
         user,
-        message,
+        message: data.message,
+        type: data.type || "GENERAL",
         date: new Date().toLocaleTimeString(),
-      });
-    });
-
-    socket.on("typing", () => {
-      socket.broadcast.emit("typing", {
-        user,
-      });
-    });
-
-    socket.on("stopTyping", () => {
-      socket.broadcast.emit("stopTyping", {
-        user,
       });
     });
   });
