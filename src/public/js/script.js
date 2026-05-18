@@ -24,7 +24,7 @@ const clock = document.querySelector("#clock");
 let selectedType = "CRITICA";
 
 function updateClock() {
-  if (clock) clock.textContent = new Date().toLocaleTimeString("es-EC");
+  if (clock) clock.textContent = new Date().toLocaleTimeString("it-IT");
 }
 updateClock();
 setInterval(updateClock, 1000);
