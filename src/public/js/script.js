@@ -71,8 +71,44 @@ alertInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") emitAlert();
 });
 
-socket.on("alert", ({ user, message, type, date }) => {
-  const safeMsg = escapeHTML(message);
+const overlay      = document.querySelector("#alert-overlay");
+const overlayIcon  = document.querySelector("#overlay-icon");
+const overlayType  = document.querySelector("#overlay-type");
+const overlayUser  = document.querySelector("#overlay-user");
+const overlayMsg   = document.querySelector("#overlay-message");
+
+let overlayTimer = null;
+
+function showOverlay(data, onDone) {
+  const { user, message, type } = data;
+
+  // limpiar timer anterior si llega otra alerta encima
+  if (overlayTimer) {
+    clearTimeout(overlayTimer);
+    overlay.classList.remove("fading");
+    overlay.classList.add("hidden");
+  }
+
+  overlayIcon.textContent  = typeIcon(type);
+  overlayType.textContent  = type;
+  overlayUser.textContent  = `Emisor: ${escapeHTML(user)}`;
+  overlayMsg.textContent   = message;
+
+  overlay.className = `alert-overlay overlay-${type}`;
+
+  overlayTimer = setTimeout(() => {
+    overlay.classList.add("fading");
+    setTimeout(() => {
+      overlay.classList.add("hidden");
+      overlay.classList.remove("fading");
+      overlayTimer = null;
+      onDone();
+    }, 100);
+  }, 400);
+}
+
+function appendToList({ user, message, type, date }) {
+  const safeMsg  = escapeHTML(message);
   const safeUser = escapeHTML(user);
   const safeType = escapeHTML(type);
 
@@ -92,6 +128,10 @@ socket.on("alert", ({ user, message, type, date }) => {
 
   alertsList.appendChild(item);
   alertsList.scrollTop = alertsList.scrollHeight;
+}
+
+socket.on("alert", (data) => {
+  showOverlay(data, () => appendToList(data));
 });
 
 socket.on("connect", () => console.log("Conectado al servidor ESPE-Alert"));
