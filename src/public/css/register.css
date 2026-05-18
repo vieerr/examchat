@@ -1,42 +1,144 @@
-main {
-  margin-top: 50px;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #0a0a0a;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  background-color: #ffffff; /* Fondo blanco institucional */
 }
 
-main form {
-  width: 50%;
-  padding: 20px;
-  border: 2px solid #006633; /* Borde verde institucional */
+.register-wrapper {
+  width: 100%;
+  max-width: 420px;
+  padding: 16px;
+}
+
+.logo-area {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo-area .badge {
+  display: inline-block;
+  background: #cc0000;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 12px;
+  animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.logo-area h1 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 2px;
+}
+
+.logo-area h1 span {
+  color: #cc0000;
+}
+
+.logo-area p {
+  color: #888;
+  font-size: 0.85rem;
+  margin-top: 6px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.card {
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  border-top: 3px solid #cc0000;
   border-radius: 8px;
-  background-color: #f9f9f9; /* Contraste suave */
+  padding: 32px;
+  box-shadow: 0 20px 60px rgba(204, 0, 0, 0.15);
 }
 
-main form .input-group label {
-  text-align: center;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #006633; /* Verde institucional */
+.card h2 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-main form .button-container {
-  margin-top: 10px;
-  text-align: center;
+.card p {
+  color: #666;
+  font-size: 0.8rem;
+  margin-bottom: 24px;
 }
 
-main form .button-container button {
-  background-color: #006633; /* Verde institucional */
-  color: #ffffff; /* Texto blanco */
-  font-weight: bold;
-  padding: 10px 20px;
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  color: #aaa;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.input-group input {
+  background: #0f0f0f;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #cc0000;
+}
+
+.input-group input::placeholder {
+  color: #444;
+}
+
+button[type="submit"] {
+  width: 100%;
+  background: #cc0000;
+  color: #fff;
   border: none;
   border-radius: 6px;
+  padding: 13px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.2s;
 }
 
-main form .button-container button:hover {
-  background-color: #ffd700; /* Amarillo institucional al hover */
-  color: #000000; /* Texto negro para contraste */
+button[type="submit"]:hover {
+  background: #aa0000;
+}
+
+.footer-note {
+  text-align: center;
+  margin-top: 24px;
+  color: #444;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
 }
