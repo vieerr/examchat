@@ -1,5 +1,20 @@
 const socket = io();
 
+// ── theme toggle ──
+const themeBtn = document.querySelector("#theme-toggle");
+
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light");
+  themeBtn.textContent = "☾";
+}
+
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  const isLight = document.body.classList.contains("light");
+  themeBtn.textContent = isLight ? "☾" : "☀";
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+});
+
 const alertInput = document.querySelector("#alert-input");
 const sendBtn = document.querySelector("#send-alert");
 const alertsList = document.querySelector("#alerts-list");
